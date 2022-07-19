@@ -4,6 +4,7 @@
 
 プロジェクトのルートディレクトリに ```.env.local``` を作成し、VUE_APP_MAPBOX_ATにMapboxのアクセストークンを設定してください。
 また、VUE_APP_MAP_CENTER_LONGITUDEに地図の中心点の経度、VUE_APP_MAP_LATITUDEに緯度を設定してください。
+
 ```:bash
 npm install
 ```

@@ -49,19 +49,20 @@ export default {
   },
   watch: {
         'motor_rpm_slider': async function(val, oldVal){
-          console.log("--",oldVal,"->",val,"--");
+          console.log(oldVal,"->",val);
         if(val != oldVal){
-          const res = await axios.get('http://localhost/api/motor_rpm');
-          const ServeroldVal = res.data.value;
-          if(ServeroldVal == oldVal){
-            axios.post('http://localhost/api/motor_rpm', {value: val}).then(function (response) {
-              if(response.data.status == "success"){
+          //const res = await axios.get('http://localhost/operation/');
+         // const ServeroldVal = res.data.value;
+         // if(ServeroldVal == oldVal){
+            axios.post('http://localhost/operation/add', {motor: this.motor_rpm_slider,helm:0}).then(function (response) {
+             console.log(response);
+             /* if(response.status){
                 console.log("success!");
              //   this.motor_rpm_slider = val;
               } else {
                 console.log("error!");
               //   this.motor_rpm_slider = oldVal;
-              }
+              }*/
           /*     $Notification({
                 type: "success",
                 title: '値が更新されました',
@@ -69,7 +70,7 @@ export default {
                   '新しい値:' + val.toString()
               })*/
             }).catch(function (error) {
-        /*       $Notification({
+            /*   $Notification({
                 type:"danger",
                 title: '送信に失敗しました',
                 text:
@@ -78,7 +79,7 @@ export default {
               console.log(error);
           //    this.motor_rpm_slider = ServeroldVal;
             });
-          } else {
+        //  } else {
            /*    $Notification({
                 type:"warning",
                 title: 'リモートとローカルの値が一致しませんでした',
@@ -86,7 +87,7 @@ export default {
                   'リモートの値に変更しました。データは送信されていません。新しい値:' + ServeroldVal.toString()
               })*/
           //    this.motor_rpm_slider = ServeroldVal;
-          }
+    //      }
         }
 
     }
